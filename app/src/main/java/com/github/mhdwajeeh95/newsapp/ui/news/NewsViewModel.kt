@@ -1,10 +1,12 @@
 package com.github.mhdwajeeh95.newsapp.ui.news
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class NewsViewModel : ViewModel() {
+class NewsViewModel @Inject constructor(app: Application) : AndroidViewModel(app) {
 
     private val _searchQueryText = MutableLiveData<String>().apply {
         value = ""
