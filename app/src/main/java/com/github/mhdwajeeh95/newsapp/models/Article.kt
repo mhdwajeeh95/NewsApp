@@ -1,31 +1,65 @@
 package com.github.mhdwajeeh95.newsapp.models
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Article(
+@Entity
+data class Article @JvmOverloads constructor(
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Long,
 
     @SerializedName("source")
-    val source: ArticleSource,
+    @Ignore
+    var source: ArticleSource? = null,
+
+    @Expose(serialize = false, deserialize = false)
+    @ColumnInfo(name = "sourceId")
+    var sourceId: String,
+
+    @Expose(serialize = false, deserialize = false)
+    @ColumnInfo(name = "sourceName")
+    var sourceName: String,
 
     @SerializedName("author")
-    val author: String,
+    @ColumnInfo(name = "author")
+    var author: String,
 
     @SerializedName("title")
-    val title: String,
+    @ColumnInfo(name = "title")
+    var title: String,
 
     @SerializedName("description")
-    val description: String,
+    @ColumnInfo(name = "description")
+    var description: String,
 
     @SerializedName("url")
-    val url: String,
+    @ColumnInfo(name = "url")
+    var url: String,
 
     @SerializedName("urlToImage")
-    val urlToImage: String,
+    @ColumnInfo(name = "urlToImage")
+    var urlToImage: String,
 
     @SerializedName("publishedAt")
-    val publishedAt: String,
+    @ColumnInfo(name = "publishedAt")
+    var publishedAt: String,
 
     @SerializedName("content")
-    val content: String? = null
+    @ColumnInfo(name = "content")
+    var content: String? = null,
 
-    )
+    @Expose(serialize = false, deserialize = false)
+    @ColumnInfo(name = "isTop")
+    var isTop: Boolean = false,
+
+    @Expose(serialize = false, deserialize = false)
+    @ColumnInfo(name = "isFav")
+    var isFav: Boolean = false
+
+)
