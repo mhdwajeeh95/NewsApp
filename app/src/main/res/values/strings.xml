@@ -2,4 +2,9 @@
     <string name="app_name">NewsApp</string>
     <string name="title_news">News</string>
     <string name="title_favorites">Favorites</string>
+
+
+    <string name="empty_list_text">Empty List</string>
+    <string name="loading_error_text">Loading error. Click to retry.</string>
+    <string name="loading_text">Loading…</string>
 </resources>
