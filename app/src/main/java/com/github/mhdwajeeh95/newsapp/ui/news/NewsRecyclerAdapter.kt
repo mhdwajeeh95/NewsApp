@@ -3,6 +3,7 @@ package com.github.mhdwajeeh95.newsapp.ui.news
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.github.mhdwajeeh95.newsapp.R
 import com.github.mhdwajeeh95.newsapp.models.Article
@@ -22,6 +23,19 @@ class NewsRecyclerAdapter : BaseRecyclerAdapter() {
         return 0
     }
 
+    @Suppress("UNCHECKED_CAST")
+    override fun setData(newDataList: MutableList<Any>) {
+        val diffResult = DiffUtil.calculateDiff(
+            ArticleDiffCallback(
+                this.dataList as MutableList<Article>,
+                newDataList as MutableList<Article>
+            )
+        )
+
+        dataList = newDataList
+//        diffResult.dispatchUpdatesTo(this)
+        notifyDataSetChanged()
+    }
 
     inner class NewsItemVH(itemView: View) : BaseViewHolder(itemView) {
 
@@ -42,6 +56,23 @@ class NewsRecyclerAdapter : BaseRecyclerAdapter() {
                 Glide.with(context).load(article.urlToImage).into(image)
 
             }
+        }
+
+    }
+
+    class ArticleDiffCallback(val oldList: List<Article>, val newList: List<Article>) :
+        DiffUtil.Callback() {
+
+        override fun getOldListSize(): Int = oldList.size
+
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] === newList[newItemPosition]
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
         }
 
     }

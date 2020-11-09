@@ -7,4 +7,8 @@
     <string name="empty_list_text">Empty List</string>
     <string name="loading_error_text">Loading error. Click to retry.</string>
     <string name="loading_text">Loading…</string>
+
+    <string name="lorem_ipsum_short">Lorem ipsum dolor sit amet</string>
+    <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="lorem_ipsum_long">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
 </resources>
