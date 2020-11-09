@@ -79,7 +79,11 @@ abstract class BaseRecyclerAdapter(protected var dataList: MutableList<Any> = mu
     abstract fun createVH(parent: ViewGroup, viewType: Int): BaseViewHolder
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        if (position >= dataList.size) return
+        // if view holder related to non data item
+        if (position >= dataList.size) {
+            holder.bind(Any(), position)
+            return
+        }
 
         holder.bind(dataList[position], position)
     }
@@ -96,8 +100,8 @@ abstract class BaseRecyclerAdapter(protected var dataList: MutableList<Any> = mu
 
     abstract fun itemViewType(position: Int): Int
 
-    open fun setData(dataList: MutableList<Any>) {
-        this.dataList = dataList
+    open fun setData(newDataList: MutableList<Any>) {
+        this.dataList = newDataList
         notifyDataSetChanged()
     }
 
