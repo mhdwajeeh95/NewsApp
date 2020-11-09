@@ -1,6 +1,7 @@
 package com.github.mhdwajeeh95.newsapp.repository
 
 import com.github.mhdwajeeh95.newsapp.db.daos.ArticleDao
+import com.github.mhdwajeeh95.newsapp.models.Article
 import com.github.mhdwajeeh95.newsapp.network.ApiResponse
 import com.github.mhdwajeeh95.newsapp.network.NetworkCaller
 import com.github.mhdwajeeh95.newsapp.network.models.ArticlesResponseBody
@@ -22,7 +23,10 @@ class NewsRepository @Inject constructor(
         };
     }
 
-    suspend fun getTopNews(country:String = "tr", page: Int = 1): ApiResponse<ArticlesResponseBody> {
+    suspend fun getTopNews(
+        country: String = "tr",
+        page: Int = 1
+    ): ApiResponse<ArticlesResponseBody> {
 
         return NetworkCaller.safeApiCall {
             apiService.topHeadlines(
@@ -31,6 +35,10 @@ class NewsRepository @Inject constructor(
             )
         };
     }
+
+    suspend fun getFavoriteArticles() = articleDao.getFavoriteArticles()
+
+    suspend fun deleteFavoriteArticle(article: Article) = articleDao.deleteArticle(article)
 
 
 }
