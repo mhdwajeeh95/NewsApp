@@ -1,5 +1,6 @@
 package com.github.mhdwajeeh95.newsapp.ui.articledetails
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -11,6 +12,7 @@ import com.github.mhdwajeeh95.newsapp.R
 import com.github.mhdwajeeh95.newsapp.app.MyApplication
 import com.github.mhdwajeeh95.newsapp.models.Article
 import com.github.mhdwajeeh95.newsapp.ui.base.BaseActivity
+import com.github.mhdwajeeh95.newsapp.ui.web.WebActivity
 import kotlinx.android.synthetic.main.activity_article_details.*
 import javax.inject.Inject
 
@@ -76,6 +78,17 @@ class ArticleDetailsActivity : BaseActivity() {
 
     private fun initUI() {
 
+        source_btn.setOnClickListener {
+            viewModel.article.value?.let {
+
+                startActivity(Intent(this, WebActivity::class.java).apply {
+                    putExtra(
+                        "url",
+                        it.url
+                    )
+                })
+            }
+        }
     }
 
     private fun registerObservers() {
