@@ -25,9 +25,6 @@ class FavoritesViewModel @Inject constructor(
     private val _deleteArticleError: MutableLiveData<Event<Boolean>> = MutableLiveData(Event(false))
     val deleteArticleError: LiveData<Event<Boolean>> = _deleteArticleError
 
-    init {
-        getFavoriteArticles()
-    }
 
     fun getFavoriteArticles() {
         viewModelScope.launch(Dispatchers.IO) {

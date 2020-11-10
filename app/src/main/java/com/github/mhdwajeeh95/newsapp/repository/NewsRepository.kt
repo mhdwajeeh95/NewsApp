@@ -40,5 +40,8 @@ class NewsRepository @Inject constructor(
 
     suspend fun deleteFavoriteArticle(article: Article) = articleDao.deleteArticle(article)
 
+    suspend fun setArticleFavorite(article: Article, favorite: Boolean) {
+        articleDao.insertArticle(article.apply { isFav = favorite })
+    }
 
 }

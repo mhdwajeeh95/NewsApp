@@ -41,6 +41,8 @@ class FavoriteNewsRecyclerAdapter : BaseRecyclerAdapter() {
 
             val article = dataList[pos] as Article
 
+            itemView.setOnClickListener { recyclerAdapterListener?.onItemClick(article) }
+            
             with(itemView) {
 
                 title.text = article.title

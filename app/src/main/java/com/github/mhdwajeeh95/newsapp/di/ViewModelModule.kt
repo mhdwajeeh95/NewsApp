@@ -2,6 +2,7 @@ package com.github.mhdwajeeh95.newsapp.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.github.mhdwajeeh95.newsapp.ui.articledetails.ArticleDetailsViewModel
 import com.github.mhdwajeeh95.newsapp.ui.favorites.FavoritesViewModel
 import com.github.mhdwajeeh95.newsapp.ui.news.NewsViewModel
 import com.github.mhdwajeeh95.newsapp.viewmodel.ViewModelFactory
@@ -21,6 +22,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewsViewModel::class)
     abstract fun bindNewsViewModel(viewModel: NewsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ArticleDetailsViewModel::class)
+    abstract fun bindArticleDetailsViewModel(viewModel: ArticleDetailsViewModel): ViewModel
 
 
     /**

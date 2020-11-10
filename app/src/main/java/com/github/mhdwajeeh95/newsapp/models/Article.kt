@@ -1,5 +1,6 @@
 package com.github.mhdwajeeh95.newsapp.models
 
+import android.os.Bundle
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
@@ -62,4 +63,51 @@ data class Article @JvmOverloads constructor(
     @ColumnInfo(name = "isFav")
     var isFav: Boolean = false
 
-)
+) {
+
+    constructor(bundle: Bundle) : this(
+        bundle.getLong("id"),
+        ArticleSource(bundle.getString("sourceId", ""), bundle.getString("sourceName", "")),
+        bundle.getString("sourceId", ""),
+        bundle.getString("sourceName", ""),
+        bundle.getString("author", ""),
+        bundle.getString("title", ""),
+        bundle.getString("description", ""),
+        bundle.getString("url", ""),
+        bundle.getString("urlToImage", ""),
+        bundle.getString("publishedAt", ""),
+        bundle.getString("content"),
+        bundle.getBoolean("isTop"),
+        bundle.getBoolean("isFav")
+    )
+
+
+    fun toBundle(): Bundle {
+
+        val bundle = Bundle()
+
+        bundle.putLong("id", this.id)
+
+        if (this.source == null) {
+            bundle.putString("sourceId", this.sourceId)
+            bundle.putString("sourceName", this.sourceName)
+
+        } else {
+            bundle.putString("sourceId", this.source!!.id)
+            bundle.putString("sourceName", this.source!!.name)
+        }
+
+        bundle.putString("author", this.author)
+        bundle.putString("title", this.title)
+        bundle.putString("description", this.description)
+        bundle.putString("url", this.url)
+        bundle.putString("urlToImage", this.urlToImage)
+        bundle.putString("publishedAt", this.publishedAt)
+        bundle.putString("content", this.content)
+        bundle.putBoolean("isTop", this.isTop)
+        bundle.putBoolean("isFav", this.isFav)
+
+        return bundle
+    }
+
+}

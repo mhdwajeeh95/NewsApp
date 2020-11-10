@@ -147,6 +147,8 @@ abstract class BaseRecyclerAdapter(protected var dataList: MutableList<Any> = mu
     interface RecyclerAdapterListener {
         fun onLoadMoreClicked()
         fun onReloadClicked()
+
+        fun onItemClick(itemObject:Any)
     }
 
     enum class RecyclerAdapterStatus(val value: Int) {

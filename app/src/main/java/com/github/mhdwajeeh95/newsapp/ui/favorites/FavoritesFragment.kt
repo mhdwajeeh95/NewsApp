@@ -1,6 +1,7 @@
 package com.github.mhdwajeeh95.newsapp.ui.favorites
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +12,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mhdwajeeh95.newsapp.R
 import com.github.mhdwajeeh95.newsapp.app.MyApplication
 import com.github.mhdwajeeh95.newsapp.models.Article
+import com.github.mhdwajeeh95.newsapp.ui.articledetails.ArticleDetailsActivity
 import com.github.mhdwajeeh95.newsapp.ui.base.BaseFragment
 import com.github.mhdwajeeh95.newsapp.ui.base.BaseRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_news.*
 import javax.inject.Inject
 
-class FavoritesFragment : BaseFragment(), FavoriteNewsRecyclerAdapter.OnDeleteListener {
+class FavoritesFragment : BaseFragment(), FavoriteNewsRecyclerAdapter.OnDeleteListener,
+    BaseRecyclerAdapter.RecyclerAdapterListener {
 
     var favoriteNewsRecyclerAdapter: FavoriteNewsRecyclerAdapter =
         FavoriteNewsRecyclerAdapter().apply {
             onDeleteListener = this@FavoritesFragment
+            recyclerAdapterListener = this@FavoritesFragment
         }
 
     @Inject
@@ -54,6 +58,12 @@ class FavoritesFragment : BaseFragment(), FavoriteNewsRecyclerAdapter.OnDeleteLi
         registerObservers()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.getFavoriteArticles()
+
+    }
     private fun initUI() {
 
         recycler_view.apply {
@@ -79,5 +89,19 @@ class FavoritesFragment : BaseFragment(), FavoriteNewsRecyclerAdapter.OnDeleteLi
 
     override fun onDelete(article: Article) {
         viewModel.removeArticleFromFavorites(article)
+    }
+
+    override fun onLoadMoreClicked() {
+
+    }
+
+    override fun onReloadClicked() {
+        viewModel.getFavoriteArticles()
+    }
+
+    override fun onItemClick(itemObject: Any) {
+        startActivity(Intent(requireActivity(), ArticleDetailsActivity::class.java).apply {
+            putExtras((itemObject as Article).toBundle())
+        })
     }
 }

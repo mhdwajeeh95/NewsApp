@@ -39,10 +39,17 @@ class NewsRecyclerAdapter : BaseRecyclerAdapter() {
 
     inner class NewsItemVH(itemView: View) : BaseViewHolder(itemView) {
 
+        init {
+            itemView.isClickable = true
+            itemView.isFocusable = true
+        }
+
         override fun bind(dataItem: Any, pos: Int) {
             super.bind(dataItem, pos)
 
             val article = dataList[pos] as Article
+
+            itemView.setOnClickListener { recyclerAdapterListener?.onItemClick(article) }
 
             with(itemView) {
 

@@ -1,6 +1,7 @@
 package com.github.mhdwajeeh95.newsapp.di
 
 import android.app.Application
+import com.github.mhdwajeeh95.newsapp.ui.articledetails.ArticleDetailsActivity
 import com.github.mhdwajeeh95.newsapp.ui.favorites.FavoritesFragment
 import com.github.mhdwajeeh95.newsapp.ui.news.NewsFragment
 import dagger.BindsInstance
@@ -25,5 +26,7 @@ interface AppComponent {
     fun inject(newsFragment: NewsFragment)
 
     fun inject(favoritesFragment: FavoritesFragment)
+
+    fun inject(articleDetailsActivity: ArticleDetailsActivity)
 
 }

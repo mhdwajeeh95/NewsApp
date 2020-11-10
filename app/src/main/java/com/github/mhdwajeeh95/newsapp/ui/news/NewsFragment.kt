@@ -1,6 +1,7 @@
 package com.github.mhdwajeeh95.newsapp.ui.news
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mhdwajeeh95.newsapp.R
 import com.github.mhdwajeeh95.newsapp.app.MyApplication
+import com.github.mhdwajeeh95.newsapp.models.Article
+import com.github.mhdwajeeh95.newsapp.ui.articledetails.ArticleDetailsActivity
 import com.github.mhdwajeeh95.newsapp.ui.base.BaseFragment
 import com.github.mhdwajeeh95.newsapp.ui.base.BaseRecyclerAdapter
+import com.github.mhdwajeeh95.newsapp.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_news.*
 import javax.inject.Inject
 
@@ -131,5 +135,11 @@ class NewsFragment : BaseFragment(), BaseRecyclerAdapter.RecyclerAdapterListener
 
     override fun onReloadClicked() {
 
+    }
+
+    override fun onItemClick(itemObject: Any) {
+        startActivity(Intent(requireActivity(),ArticleDetailsActivity::class.java).apply {
+            putExtras((itemObject as Article).toBundle())
+        })
     }
 }

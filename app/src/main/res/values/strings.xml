@@ -2,6 +2,7 @@
     <string name="app_name">NewsApp</string>
     <string name="title_news">News</string>
     <string name="title_favorites">Favorites</string>
+    <string name="title_article">Article</string>
 
 
     <string name="empty_list_text">Empty List</string>
@@ -10,7 +11,11 @@
 
     <string name="lorem_ipsum_short">Lorem ipsum dolor sit amet</string>
     <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
-    <string name="lorem_ipsum_long">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
 
     <string name="message_remove_article_from_fav_error">Article Couldn\'t be removed from favorite list</string>
+
+    <string name="action_favorite">Favorite</string>
+    <string name="action_share">Favorite</string>
+    <string name="action_go_to_source">Go to source</string>
 </resources>
