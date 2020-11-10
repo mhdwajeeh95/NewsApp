@@ -3,6 +3,7 @@
     <string name="title_news">News</string>
     <string name="title_favorites">Favorites</string>
     <string name="title_article">Article</string>
+    <string name="title_source">Source</string>
 
 
     <string name="empty_list_text">Empty List</string>

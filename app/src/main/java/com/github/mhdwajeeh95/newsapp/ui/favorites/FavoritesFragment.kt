@@ -64,6 +64,7 @@ class FavoritesFragment : BaseFragment(), FavoriteNewsRecyclerAdapter.OnDeleteLi
         viewModel.getFavoriteArticles()
 
     }
+
     private fun initUI() {
 
         recycler_view.apply {
@@ -75,9 +76,12 @@ class FavoritesFragment : BaseFragment(), FavoriteNewsRecyclerAdapter.OnDeleteLi
 
     private fun registerObservers() {
         viewModel.articles.observe(viewLifecycleOwner, { articleList ->
-            if (articleList.size == 0)
-                favoriteNewsRecyclerAdapter.status =
-                    BaseRecyclerAdapter.RecyclerAdapterStatus.EMPTY_CLICK_TO_RELOAD
+
+            favoriteNewsRecyclerAdapter.status = if (articleList.size == 0)
+                BaseRecyclerAdapter.RecyclerAdapterStatus.EMPTY_CLICK_TO_RELOAD
+            else
+                BaseRecyclerAdapter.RecyclerAdapterStatus.ALL_LOADED
+
             favoriteNewsRecyclerAdapter.setData(articleList.toMutableList())
         })
 

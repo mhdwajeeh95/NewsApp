@@ -1,14 +1,14 @@
 package com.github.mhdwajeeh95.newsapp.models
 
 import android.os.Bundle
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "articles")
+@Entity(
+    tableName = "articles",
+    indices = [Index(value = ["url"], unique = true)]
+)
 data class Article @JvmOverloads constructor(
 
     @PrimaryKey(autoGenerate = true)
